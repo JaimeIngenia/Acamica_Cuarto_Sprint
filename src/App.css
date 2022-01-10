@@ -1,6 +1,14 @@
 .App {
   text-align: center;
 }
+.delete {
+  border-radius: 10px;
+  color: white;
+  padding: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+  background-color: red;
+}
 
 .App-logo {
   height: 40vmin;
