@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { getUsers, addUsers,deleteUsers } from "./getData";
+import { getUsers, addUsers,deleteUsers,actualizarUsers,db } from "./getData";
+import corazon from "./images/corazon.svg"
+import { doc, onSnapshot } from "firebase/firestore";
 
 const INITIAL_FORM_DATA ={
   Nombre:"",
@@ -10,14 +12,25 @@ function App() {
   {/* ------------------ESTADOS------------------ */}
   const [usersData, setUsersData]=useState([]);
   const [dataForm,setDataForm]=useState(INITIAL_FORM_DATA);
+  const [watchPerson,setWatchPerson]=useState(INITIAL_FORM_DATA);
   
   useEffect(()=>{
-    getUsers()
-    .then((data) => {
-      console.log(data);
-      setUsersData(data);
-    })
-    .catch((error) => console.log("error"));
+    
+  const unsub = onSnapshot(doc(db, "users", "lvMMPPxLkwQHbdvGNy8W"), (doc) => {
+    console.log("Current data: ", doc.data());
+    setWatchPerson(doc.data());
+}
+);
+return ()=>{
+  unsub()
+}
+
+    // getUsers()
+    // .then((data) => {
+    //   console.log(data);
+    //   setUsersData(data);
+    // })
+    // .catch((error) => console.log("error"));
   },[])
   {/* ------------------EVENTOS----------------- */}
   const manejarSubmit =(e)=>{
@@ -49,11 +62,18 @@ function App() {
       setUsersData(newUsers);
     }) ;
   }
+
+  const likeUser = (id, likes=0)=>{
+    // console.log("Me gusta"+ id);
+    actualizarUsers(id,{
+      likes: likes
+    })
+  }
   // console.log(dataForm);
   
   return (
     <div className="App">
-      <h1>Firebase tema 2</h1>
+      <h1>Firebase tema 3</h1>
       {usersData.map((u)=>{
         return(
           <div key={u.id}>
@@ -64,6 +84,16 @@ function App() {
             id={u.id}
             onClick={manejarDelete}
             >x</button>
+            <button onClick={()=>likeUser(u.id,200)}>
+              <img  
+              src={corazon}
+              height ="13px"
+               > 
+              </img>
+              <span>
+              {u.likes}
+              </span>
+            </button>
           </div>
         );
       })}
@@ -86,7 +116,25 @@ function App() {
         </div>
         <button>Enviar</button>
       </form>
-
+        <div key={watchPerson.id}>
+              <span>{watchPerson.Correo}</span>
+              <span>{watchPerson.Nombre}</span>
+              {/* <button 
+              className="delete"
+              id={watchPerson.id}
+              onClick={manejarDelete}
+              >x</button> */}
+              <button onClick={()=>likeUser("lvMMPPxLkwQHbdvGNy8W",400)}>
+                <img  
+                src={corazon}
+                height ="13px"
+                > 
+                </img>
+                <span>
+                  {watchPerson.likes}
+                </span>
+              </button>
+            </div>
     </div>
   );
 }

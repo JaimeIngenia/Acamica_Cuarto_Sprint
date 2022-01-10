@@ -1,4 +1,4 @@
-import { getFirestore, collection, getDocs, addDoc, DocumentReference,  doc, deleteDoc} from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs, addDoc, doc, deleteDoc, updateDoc} from 'firebase/firestore';
 import {app } from "./firebase";
 // Follow this pattern to import other Firebase services
 // import { } from 'firebase/<service>';
@@ -40,4 +40,13 @@ export async function deleteUsers(id) {
     return null;
   }
   
+}
+// --------------Actualizar USUARIOS--------------
+export async function actualizarUsers(id, newDataActualizada) {
+  const userRef = doc(db, "users", id);
+  try {
+    await updateDoc(userRef,newDataActualizada);
+}catch (error) {
+  console.log("Error al actualizar item.", error);
+}
 }
