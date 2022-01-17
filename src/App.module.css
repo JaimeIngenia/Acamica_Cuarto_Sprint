@@ -1,0 +1,22 @@
+.App {
+  text-align: center;
+  border: solid 3px red;
+
+
+}
+.delete {
+  border-radius: 10px;
+  color: white;
+  padding: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+  
+}
+
+.auth{
+  border: solid 3px red;
+  width: 600px;
+  height: 500px;
+  width: 100%;
+  /* background-color: #2e132c */
+}

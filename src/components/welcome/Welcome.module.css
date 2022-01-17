@@ -1,0 +1,16 @@
+.userProfile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+.userProfile button {
+  margin-left: 10px;
+  padding: 10px;
+}
+
+.userProfile img {
+  border-radius: 50%;
+  margin-right: 10px;
+}

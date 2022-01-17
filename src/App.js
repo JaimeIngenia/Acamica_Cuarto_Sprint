@@ -1,7 +1,10 @@
+/* eslint-disable no-lone-blocks */
 import { useEffect, useState } from "react";
 import { getUsers, addUsers,deleteUsers,actualizarUsers,db } from "./getData";
 import corazon from "./images/corazon.svg"
-import { doc, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot } from "firebase/firestore";
+import Auth from "./auth/Auth";
+import style from "./App.module.css"
 
 const INITIAL_FORM_DATA ={
   Nombre:"",
@@ -9,40 +12,62 @@ const INITIAL_FORM_DATA ={
 }
 
 function App() {
+
   {/* ------------------ESTADOS------------------ */}
   const [usersData, setUsersData]=useState([]);
   const [dataForm,setDataForm]=useState(INITIAL_FORM_DATA);
   const [watchPerson,setWatchPerson]=useState(INITIAL_FORM_DATA);
+  const [userLog, setUserLog] = useState(null);
   
-  useEffect(()=>{
-    
-  const unsub = onSnapshot(doc(db, "users", "lvMMPPxLkwQHbdvGNy8W"), (doc) => {
-    console.log("Current data: ", doc.data());
-    setWatchPerson(doc.data());
-}
-);
-return ()=>{
-  unsub()
-}
 
-    // getUsers()
-    // .then((data) => {
-    //   console.log(data);
-    //   setUsersData(data);
-    // })
-    // .catch((error) => console.log("error"));
+
+
+
+  useEffect(()=>{    
+  const unsub = onSnapshot(collection(db, "users"), (snapshot) => {
+    const usersData = snapshot.docs.map(
+      (doc) => {
+        return {
+          ...doc.data(),
+          id: doc.id,
+          likes: doc.data().likes
+        };
+      },
+      (error) => {
+        console.log(error, "error de escucha");
+      }
+    );
+    setUsersData(usersData);
+    }
+    );
+  return ()=>{
+    unsub()
+  } 
   },[])
-  {/* ------------------EVENTOS----------------- */}
-  const manejarSubmit =(e)=>{
-    e.preventDefault();
-    addUsers(dataForm).then((id)=>{
-      console.log(id);
-      setUsersData((prev)=>{
-        return[...prev,dataForm]
-      })
-      setDataForm(INITIAL_FORM_DATA)
-    });
-  };
+
+
+
+
+
+{/* ------------------PRUEBA------------------ */}
+useEffect(()=>{
+     getUsers()
+    .then((data) => {
+       console.log(data);
+       setUsersData(data);
+     })
+     .catch((error) => console.log("error"));
+  },[])
+{/* ------------------PRUEBA------------------ */}
+
+
+
+
+
+
+
+{/* ------------------EVENTOS----------------- */}
+  
 
   const cambiarNombre=(e)=>{
     setDataForm((prev)=>{
@@ -52,6 +77,19 @@ return ()=>{
       }
     })
   }
+
+  const manejarSubmit =(e)=>{
+    e.preventDefault();
+    addUsers(dataForm).then((id)=>{
+      setUsersData((prev)=>{
+        return[...prev,dataForm]
+      })
+      setDataForm(INITIAL_FORM_DATA)
+    })
+    .catch((error)=>{
+      console.log("Error guardando usuario",error);
+    })
+  };
 
   const manejarDelete=(e)=>{
     console.log(e.target.id);
@@ -64,77 +102,73 @@ return ()=>{
   }
 
   const likeUser = (id, likes=0)=>{
-    // console.log("Me gusta"+ id);
     actualizarUsers(id,{
-      likes: likes
+      likes: likes +1
     })
   }
-  // console.log(dataForm);
   
   return (
-    <div className="App">
-      <h1>Firebase tema 3</h1>
+    <div className={style.App}>
+{/* ------------------Login------------------ */}
+    <div className={style.auth}>
+      <Auth userLog={userLog} setUserLog={setUserLog} />
+    </div>     
+{/* ------------------Login------------------ */}
+
       {usersData.map((u)=>{
         return(
           <div key={u.id}>
             <span>{u.Correo}</span>
             <span>{u.Nombre}</span>
-            <button 
-            className="delete"
-            id={u.id}
-            onClick={manejarDelete}
-            >x</button>
-            <button onClick={()=>likeUser(u.id,200)}>
-              <img  
-              src={corazon}
-              height ="13px"
-               > 
+            <button className={style.delete} id={u.id} onClick={manejarDelete}>x</button>
+            <button onClick={()=>likeUser(u.id,u.likes)}>
+              <img src={corazon} height ="13px" alt="Corazon"  > 
               </img>
-              <span>
-              {u.likes}
-              </span>
+              <span>{u.likes ? u.likes : 0}</span>
             </button>
           </div>
         );
       })}
-      {/* ------------------formulario------------------ */}
+
+
+
+
+
+
+{/* ------------------formulario------------------ */}
 
       <form onSubmit={manejarSubmit} >
         <div>
           <span>Nombre</span>
-          <input name="Nombre" 
-                value={dataForm.Nombre} 
-                onChange={cambiarNombre}></input>
+          <input name="Nombre" value={dataForm.Nombre} onChange={cambiarNombre}></input>
         </div>
         <div>
           <span>Email</span>
-          <input  name="Correo" 
-                  type="email"
-                  value={dataForm.Correo} 
-                   onChange={cambiarNombre} 
-          ></input>
+          <input onChange={cambiarNombre} name="Correo" type="email" value={dataForm.Correo} ></input>  
         </div>
         <button>Enviar</button>
       </form>
-        <div key={watchPerson.id}>
-              <span>{watchPerson.Correo}</span>
-              <span>{watchPerson.Nombre}</span>
-              {/* <button 
-              className="delete"
-              id={watchPerson.id}
-              onClick={manejarDelete}
-              >x</button> */}
-              <button onClick={()=>likeUser("lvMMPPxLkwQHbdvGNy8W",400)}>
-                <img  
-                src={corazon}
-                height ="13px"
-                > 
-                </img>
-                <span>
-                  {watchPerson.likes}
-                </span>
-              </button>
-            </div>
+{/* ------------------formulario------------------ */}
+
+
+
+
+
+    {/* <div key={watchPerson.id}>
+          <span>{watchPerson.Correo}</span>
+          <span>{watchPerson.Nombre}</span>
+          <button onClick={()=>likeUser("72Dj69B3w8XzqWfZVb54",600)}>
+            <img  
+            src={corazon}
+            height ="13px"
+            alt="corazon"
+            > 
+            </img>
+            <span>
+              {watchPerson.likes}
+            </span>
+          </button>
+      </div> */}
     </div>
   );
 }
