@@ -23,7 +23,7 @@ const Auth = ({userLog, setUserLog}) => {
 
     return (
         <div>
-          <div className={styles.auth}>
+          <div className={styles.auth} >
             <img src={devs} alt="" className={styles.devs} />
             <div className={styles.bloqueTexto}>
 

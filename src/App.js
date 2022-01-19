@@ -8,7 +8,9 @@ import style from "./App.module.css"
 
 const INITIAL_FORM_DATA ={
   Nombre:"",
-  Correo:""
+  Correo:"",
+  likes:7,
+  uid:""
 }
 
 function App() {
@@ -17,7 +19,7 @@ function App() {
   const [usersData, setUsersData]=useState([]);
   const [dataForm,setDataForm]=useState(INITIAL_FORM_DATA);
   const [watchPerson,setWatchPerson]=useState(INITIAL_FORM_DATA);
-  const [userLog, setUserLog] = useState(null);
+  const [userLog, setUserLog] = useState(null);//datos de servicio de autenticación del usuario logueado
   
 
 
@@ -30,7 +32,9 @@ function App() {
         return {
           ...doc.data(),
           id: doc.id,
+          // message: doc.data().message,
           likes: doc.data().likes
+          
         };
       },
       (error) => {
@@ -80,11 +84,16 @@ useEffect(()=>{
 
   const manejarSubmit =(e)=>{
     e.preventDefault();
-    addUsers(dataForm).then((id)=>{
-      setUsersData((prev)=>{
-        return[...prev,dataForm]
-      })
+    addUsers({
+      ...dataForm,
+    uid:userLog?.uid
+    }).then((id)=>{
+      // pilas aqui en set post 
+      // setUsersData((prev)=>{
+      //   return[...prev,dataForm,id]
+      // })
       setDataForm(INITIAL_FORM_DATA)
+      
     })
     .catch((error)=>{
       console.log("Error guardando usuario",error);
@@ -120,7 +129,8 @@ useEffect(()=>{
           <div key={u.id}>
             <span>{u.Correo}</span>
             <span>{u.Nombre}</span>
-            <button className={style.delete} id={u.id} onClick={manejarDelete}>x</button>
+            {
+              u.uid===userLog?.uid?<button className={style.delete} id={u.id} onClick={manejarDelete}>x</button>:null}
             <button onClick={()=>likeUser(u.id,u.likes)}>
               <img src={corazon} height ="13px" alt="Corazon"  > 
               </img>
