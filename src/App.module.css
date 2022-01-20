@@ -1,6 +1,98 @@
 .App {
   text-align: center;
-  border: solid 3px red;
+  /* border: solid 3px red; */
+}
+.head
+{
+  width: 100%;
+  height: 52px;
+  background-color: #250C23;
+  display: flex;
+  flex-direction: row;
+   justify-content: space-around;
+
+}
+.image2Head{
+width: 56px;
+height: 56px;
+border-radius: 50%;
+
+}
+.image2Head2{
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+
+  }
+.logoMas{
+  width: 45px;
+  height: 27px;
+   top: 12px;
+  left: 280px;
+  bleed: pass through;
+}
+.lore{
+  font-family: Silkscreen;
+  font-style: normal;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  color: #F50D5A;
+}
+.lorem2{
+  font-family: Silkscreen;
+  font-style: normal;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  color: #FFFFFF;
+  margin-top: -5px;
+
+}
+.titulo{
+
+  height: 50px;
+  /* border: solid red 3px; */
+  padding-bottom: -20px;
+  display: flex;
+  flex-direction: row;
+
+
+}
+
+.form{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height:218px ;
+  background: #150714;
+
+  align-items: flex-start;
+  /* position: absolute; */
+
+
+}
+.izquierda{
+  width: 56px;
+  height: 56px;
+  background-color: red;
+  border-radius: 50%;
+  /* border: solid red 3px; */
+  right: 50px;
+  /* position: relative; */
+  margin-right:13px ;
+
+}
+.derecha{
+  width: 500px;
+  /* height: 56px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+
 
 
 }
@@ -10,13 +102,40 @@
   padding: 5px;
   cursor: pointer;
   margin-left: 10px;
-  
+
 }
 
 .auth{
-  border: solid 3px red;
+  /* border: solid 3px red; */
   width: 600px;
   height: 500px;
   width: 100%;
   /* background-color: #2e132c */
+}
+.btnPost{
+  width: 102px;
+  height: 35px;
+  background-color:#2F112D;
+  color: #150714;
+  font-family: Silkscreen;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+}
+.textTarea{
+  width: 500px;
+height: 113px;
+background: #2F112D;
+color:#914D8B ;
+/* width: 199px;
+height: 26px; */
+
+}
+.p{
+  color: #F50D5A ;
 }

@@ -1,0 +1,183 @@
+.Welcomev2{
+    background-color: #2e132c;
+    width: 100%;
+    height: 1100px;
+
+}
+.separa{
+    width: 100%;
+    height: 5px;
+    background-color: white;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  .auth{
+    background-color: #2e132c;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  .userProfile {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+  
+  .userProfile button {
+    margin-left: 10px;
+    padding: 10px;
+  }
+  
+  .userProfile img {
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .loginBtn {
+    margin: 20px;
+    padding: 10px;
+  }
+  .devs{
+    width: 500px;
+    height: 500px;
+  }
+  .bloqueTexto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+  }
+  .lorem{
+    font-family: Silkscreen;
+    font-style: normal;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+  }
+  .lorem2{
+    font-family: Silkscreen;
+    font-style: normal;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+    margin-top: -5px;
+  }
+  .titulo{
+    width: 433px;
+    height: 50px;
+    /* border: solid red 3px; */
+    padding-bottom: -20px;
+  
+  }
+  .parrafo{
+    width: 433px;
+    height: 73px;
+    text-align: start;
+  
+  }
+  .fira{
+    font-family: Fira Code;
+    font-style: normal;
+    font-weight: 450;
+    font-size: 24px;
+    line-height: 31px;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+  
+  }
+  .google{
+    width: 367px;
+    height: 58px;
+    
+  }
+  .btnGoogle{
+    width: 367px;
+    height: 60px;
+    background-color: #4285F4;
+    color: #FFFFFF;
+    border-radius: 0px 5px 5px 0px;
+    font-size:20px;
+  }
+  .imgGoogle{
+    height:38px ;
+    width: 38px;
+  }
+  .bordeImg{
+    height:58px ;
+    width: 58px;
+    background-color: white;
+    align-items: center;
+    border-radius: 5px 0px 0px 5px;
+    display: flex;
+    justify-content: center;
+    
+  }
+  .btnGoogle2{
+    display: flex;
+    flex-direction: row;
+    margin-left: -35px;
+  
+  }
+  .input{
+    background-color: #150714;
+    Width :425px;
+    Height :67px;
+    
+    color:#914D8B;
+  }
+
+  .bloques{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 425px;
+      
+
+  }
+  .bloque1{
+      width: 58px;
+      height: 58px;
+      background-color: #F50D5A;
+  }
+  .bloque2{
+    width: 58px;
+    height: 58px;
+    background-color: #FF865C;
+}
+.bloque3{
+    width: 58px;
+    height: 58px;
+    background-color: #FFEA5C;
+}
+.bloque4{
+    width: 58px;
+    height: 58px;
+    background-color: #00DA76;
+}
+.bloque5{
+    width: 58px;
+    height: 58px;
+    background-color: #0096CE;
+}
+.bloque6{
+    width: 58px;
+    height: 58px;
+    background-color: #800FFF;
+}
+.continue{
+    width: 425px;
+    height: 67px;
+    background-color:#00DA76 ;
+    color: white;
+
+}

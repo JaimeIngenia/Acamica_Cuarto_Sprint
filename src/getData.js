@@ -8,6 +8,7 @@ import {
   GoogleAuthProvider,
   signOut
 } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 export const db = getFirestore(app);
 
@@ -66,8 +67,12 @@ export async function actualizarUsers(id, newDataActualizada) {
 }
 }
 // --------------SINGIN--------------
+// eslint-disable-next-line react-hooks/rules-of-hooks
 
 export const auth = getAuth();
 export const provider = new GoogleAuthProvider();
-export const loginConGoogle = () => signInWithPopup(auth, provider);
+export const loginConGoogle = async () => {
+  return  signInWithPopup(auth, provider)
+  
+}
 export const logout = () => signOut(auth);
