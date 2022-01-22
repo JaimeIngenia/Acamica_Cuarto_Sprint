@@ -1,7 +1,3 @@
-.App {
-  text-align: center;
-  /* border: solid 3px red; */
-}
 .head {
   width: 100%;
   height: 52px;
@@ -117,13 +113,11 @@
   background: #2f112d;
   color: #914d8b;
   /* width: 199px;
-height: 26px; */
+  height: 26px; */
 }
 .p {
   color: #f50d5a;
 }
-.line {
-  background-color: white;
-  width: 100%;
-  height: 150px;
+.spanCorreo {
+  color: white;
 }
