@@ -17,8 +17,8 @@ ReactDOM.render(
         <Routes>
           <Route exact path="/" element={<App />} />
           <Route exact path="/welcome" element={<Welcomev2 />} />
-          <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/feed" element={<Feed />} />
+          <Route exact path="/profile" element={<Profile />} />
         </Routes>
       </AppProvider>
     </BrowserRouter>

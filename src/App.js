@@ -54,11 +54,10 @@ function App() {
   return (
     <div className={style.App}>
       {/* ------------------Login------------------ */}
-      <div className={style.auth}>
-        <Auth userLog={userLog} setUserLog={setUserLog} />
-      </div>
+      <Auth userLog={userLog} setUserLog={setUserLog} />
+
       {/* ------------------Login------------------ */}
-      <div className={style.line}></div>
+
       {/* ------------------formulario------------------ */}
       {/* <Appcontext.Provider
         value={{ userLog, setUserLog, usersData, setUsersData }}

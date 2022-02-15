@@ -1,20 +1,23 @@
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-.auth{
+.auth {
   background-color: #2e132c;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  width: 100%;
+  height: 620px;
 }
+
 .userProfile {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
 
 .userProfile button {
   margin-left: 10px;
@@ -30,48 +33,47 @@
   margin: 20px;
   padding: 10px;
 }
-.devs{
+.devs {
   width: 500px;
-  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.bloqueTexto{
+.bloqueTexto {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
-.lorem{
+.lorem {
   font-family: Silkscreen;
   font-style: normal;
   font-weight: bold;
   display: flex;
   align-items: center;
-  color: #FFFFFF;
+  color: #ffffff;
 }
-.lorem2{
+.lorem2 {
   font-family: Silkscreen;
   font-style: normal;
   font-weight: bold;
   display: flex;
   align-items: center;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-top: -5px;
 }
-.titulo{
+.titulo {
   width: 433px;
   height: 50px;
   /* border: solid red 3px; */
   padding-bottom: -20px;
-
 }
-.parrafo{
+.parrafo {
   width: 433px;
   height: 73px;
   text-align: start;
-
 }
-.fira{
+.fira {
   font-family: Fira Code;
   font-style: normal;
   font-weight: 450;
@@ -79,39 +81,35 @@
   line-height: 31px;
   display: flex;
   align-items: center;
-  color: #FFFFFF;
-
+  color: #ffffff;
 }
-.google{
+.google {
   width: 367px;
   height: 58px;
-  
 }
-.btnGoogle{
+.btnGoogle {
   width: 367px;
-  height: 60px;
-  background-color: #4285F4;
-  color: #FFFFFF;
+  height: 58px;
+  background-color: #4285f4;
+  color: #ffffff;
   border-radius: 0px 5px 5px 0px;
-  font-size:20px;
+  font-size: 20px;
 }
-.imgGoogle{
-  height:38px ;
+.imgGoogle {
+  height: 38px;
   width: 38px;
 }
-.bordeImg{
-  height:58px ;
+.bordeImg {
+  height: 58px;
   width: 58px;
   background-color: white;
   align-items: center;
   border-radius: 5px 0px 0px 5px;
   display: flex;
   justify-content: center;
-  
 }
-.btnGoogle2{
+.btnGoogle2 {
   display: flex;
   flex-direction: row;
   margin-left: -35px;
-
 }

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { auth, loginConGoogle } from "../getData";
+import { addUsers, auth, loginConGoogle } from "../getData";
 import styles from "./Auth.module.css";
 import devs from "../images/devs.svg";
 import google from "../images/buscar.png";
@@ -26,7 +26,14 @@ const Auth = ({ userLog, setUserLog }) => {
 
   async function loginConGoogleV2() {
     try {
-      await loginConGoogle().then(() => {
+      await loginConGoogle().then((userData) => {
+        const valores = {
+          Nombre: userData.user.displayName,
+          Photo: userData.user.photoURL,
+          uid: userData.user.uid
+        }
+        setUserLog(valores);
+        addUsers(valores);
         navigate("/welcome");
       });
     } catch (error) {
@@ -34,7 +41,7 @@ const Auth = ({ userLog, setUserLog }) => {
     }
   }
   return (
-    <div>
+    <div >
       <div className={styles.auth}>
         <img src={devs} alt="" className={styles.devs} />
         <div className={styles.bloqueTexto}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from "./Welcome.module.css"
 import devs from "../../images/devs.svg"
 import { Link } from 'react-router-dom';
@@ -6,7 +6,12 @@ import { useContext } from 'react/cjs/react.development';
 import { Appcontext } from '../context/AppContext';
 
 const Welcomev2 = ({ userProfile, userLog, logout }) => {
-    const { color, setColor } = useContext(Appcontext);
+    const { color, setColor, nombre, setNombre } = useContext(Appcontext);
+    // const [nombre, setNombre] = useState("")
+    const manejarNombre = (e) => {
+        setNombre(e.target.value)
+        console.log(nombre);
+    }
     return (
         <div>
             <div className={styles.auth} >
@@ -16,7 +21,11 @@ const Welcomev2 = ({ userProfile, userLog, logout }) => {
                         <h2 className={styles.lorem} >WELCOME </h2>
                         <h2 className={styles.lorem, styles.lorem2} >NAME</h2>
                     </div>
-                    <input className={styles.input} type="text" placeholder='Type your username' />
+                    <input className={styles.input}
+                        type="text"
+                        placeholder='Type your username'
+                        onChange={manejarNombre}
+                    />
 
                     <div className={styles.parrafo}>
                         <p className={styles.fira}>Select your favorite color</p>

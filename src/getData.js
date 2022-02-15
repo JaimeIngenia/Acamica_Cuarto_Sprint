@@ -1,18 +1,23 @@
-import { getFirestore, collection, getDocs, addDoc, doc, deleteDoc, updateDoc} from 'firebase/firestore';
-import {app } from "./firebase";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  doc,
+  deleteDoc,
+  updateDoc,
+  setDoc,
+} from "firebase/firestore";
+import { app } from "./firebase";
 // Follow this pattern to import other Firebase services
 // import { } from 'firebase/<service>';
 import {
   getAuth,
   signInWithPopup,
   GoogleAuthProvider,
-  signOut
+  signOut,
 } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 
 export const db = getFirestore(app);
-
-
 
 // Get a list of cities from your database
 //aqui
@@ -20,36 +25,33 @@ export async function getUsers() {
   const usersCol = collection(db, "users");
   const usersSnapshot = await getDocs(usersCol);
   const usersList = usersSnapshot.docs.map((doc) => {
-    return{
+    return {
       ...doc.data(),
-      id:doc.id
+      id: doc.id,
     };
   });
   return usersList;
 }
 
 // --------------AGREGAR USUARIOS--------------
-export async function addUsers (user){
+export function addUsers(user) {
   try {
-    const docRef = await addDoc(collection(db, "users"), user);
-    console.log("Document written with ID: ", docRef.id);
-    return docRef.id;
+    setDoc(doc(db, "users", user.uid), user);
   } catch (e) {
     console.error("Error adding document: ", e);
-    throw new Error("Error en addUsers")
+    throw new Error("Error en addUsers");
     // return null;
   }
 }
 // --------------ELIMINAR USUARIOS--------------
 export async function deleteUsers(id) {
-  try{
+  try {
     await deleteDoc(doc(db, "users", id));
     return id;
-  }catch(e){
-    console.log("Enrror al borrar el item",e);
-    throw new Error("Error eliminando ")
+  } catch (e) {
+    console.log("Enrror al borrar el item", e);
+    throw new Error("Error eliminando ");
   }
-  
 }
 // --------------ACTUALIZAR USUARIOS--------------
 /**
@@ -60,11 +62,11 @@ export async function deleteUsers(id) {
 export async function actualizarUsers(id, newDataActualizada) {
   const userRef = doc(db, "users", id);
   try {
-    await updateDoc(userRef,newDataActualizada);
-}catch (error) {
-  console.log("Error al actualizar item.", error);
-  throw new Error("Error actualizando")
-}
+    await updateDoc(userRef, newDataActualizada);
+  } catch (error) {
+    console.log("Error al actualizar item.", error);
+    throw new Error("Error actualizando");
+  }
 }
 // --------------SINGIN--------------
 // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -72,7 +74,6 @@ export async function actualizarUsers(id, newDataActualizada) {
 export const auth = getAuth();
 export const provider = new GoogleAuthProvider();
 export const loginConGoogle = async () => {
-  return  signInWithPopup(auth, provider)
-  
-}
+  return signInWithPopup(auth, provider);
+};
 export const logout = () => signOut(auth);

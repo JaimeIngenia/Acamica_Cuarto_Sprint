@@ -5,17 +5,22 @@ import back from '../../images/back.svg'
 import imgLogout from '../../images/logout.svg'
 import { logout } from '../../getData'
 import { Appcontext } from '../context/AppContext';
+import { Link } from 'react-router-dom';
 const Profile = () => {
-    const { color, setColor } = useContext(Appcontext);
+    const { color, setColor, nombre } = useContext(Appcontext);
     return (
         <div>
 
             <div className={style.head2}>
                 <div className={style.head}>
-                    <div className={style.titulo}>
-                        <button className={style.back}><img src={back} alt="" /></button>
-                        <h2 className={style.lorem2}>USERNAME</h2>
-                    </div>
+
+                    <Link to="/feed">
+                        <div className={style.titulo}>
+                            <button className={style.back}><img src={back} alt="" /></button>
+                            <h2 className={style.lorem2}>{nombre}</h2>
+                        </div>
+                    </Link>
+
                     <button onClick={logout} className={style.logout}>
                         LOGOUT
                         <img src={imgLogout} alt="" />

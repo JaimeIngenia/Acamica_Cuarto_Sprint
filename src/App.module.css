@@ -1,6 +1,11 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 .App {
   text-align: center;
-  /* border: solid 3px red; */
+  /* border: solid 36px red; */
 }
 .head {
   width: 100%;
@@ -60,7 +65,7 @@
   width: 100%;
   height: 218px;
   background: #150714;
-
+  /* border: solid red 3px; */
   align-items: flex-start;
   /* position: absolute; */
 }
@@ -90,13 +95,6 @@
   margin-left: 10px;
 }
 
-.auth {
-  /* border: solid 3px red; */
-  width: 600px;
-  height: 500px;
-  width: 100%;
-  /* background-color: #2e132c */
-}
 .btnPost {
   width: 102px;
   height: 35px;
@@ -123,7 +121,7 @@ height: 26px; */
   color: #f50d5a;
 }
 .line {
-  background-color: white;
+  background-color: red;
   width: 100%;
-  height: 150px;
+  height: 50px;
 }

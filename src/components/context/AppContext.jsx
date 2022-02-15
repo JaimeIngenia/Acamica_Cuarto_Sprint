@@ -8,6 +8,7 @@ export const AppProvider = ({ children }) => {
     const [userLog, setUserLog] = useState(null); //datos de servicio de autenticación del usuario logueado
     const [data, setData] = useState(usersData);
     const [color, setColor] = useState("");
+    const [nombre, setNombre] = useState("")
     const valoresAcompartir = {
         usersData,
         setUsersData,
@@ -16,7 +17,9 @@ export const AppProvider = ({ children }) => {
         data,
         setData,
         color,
-        setColor
+        setColor,
+        nombre,
+        setNombre
     }
     return (
         <Appcontext.Provider value={valoresAcompartir}>

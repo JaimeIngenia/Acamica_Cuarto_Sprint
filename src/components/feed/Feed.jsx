@@ -7,6 +7,7 @@ import image2 from "../../images/image2.svg";
 import { addUsers } from "../../getData";
 import Muro from "../muro/Muro";
 import { Appcontext } from "../context/AppContext";
+import { Link } from "react-router-dom";
 
 const INITIAL_FORM_DATA = {
     Nombre: "",
@@ -17,7 +18,7 @@ const INITIAL_FORM_DATA = {
 const Feed = () => {
     // const Feed = ({ userLog, setUserLog, usersData, setUsersData }) => {
 
-    const { userLog, setUserLog, usersData, setUsersData } = useContext(Appcontext)
+    const { color, userLog } = useContext(Appcontext)
     {
         /* ------------------HOOCKS  ------------------ */
     }
@@ -57,12 +58,15 @@ const Feed = () => {
         <div className={style.feed}>
 
             <div className={style.head}>
+                <Link to="/profile" >
+
+                    <div style={{ borderColor: color }} className={style.elipse}>
+                        <img src={userLog.Photo} alt="" className={style.image2Head}></img>
+                        {console.log(userLog)}
+                    </div>
+                </Link>
                 <div>
-                    {" "}
-                    <img src={image2} alt="" className={style.image2Head}></img>{" "}
-                </div>
-                <div>
-                    <img src={logoMas} alt="" className={style.logoMas}></img>{" "}
+                    <img src={logoMas} alt="" className={style.logoMas}></img>
                 </div>
 
                 <div className={style.titulo}>
@@ -71,7 +75,7 @@ const Feed = () => {
                 </div>
             </div>
 
-            <form onSubmit={manejarSubmit} className={style.form}>
+            <form className={style.form}>
                 <div className={style.izquierda}>
                     <img src={image2} alt="" className={style.image2Head2}></img>
                 </div>
