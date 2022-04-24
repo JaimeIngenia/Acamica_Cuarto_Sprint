@@ -7,7 +7,7 @@ import { logout } from '../../getData'
 import { Appcontext } from '../context/AppContext';
 import { Link } from 'react-router-dom';
 const Profile = () => {
-    const { color, setColor, nombre } = useContext(Appcontext);
+    const { color, nombre } = useContext(Appcontext);
     return (
         <div>
 
@@ -16,8 +16,8 @@ const Profile = () => {
 
                     <Link to="/feed">
                         <div className={style.titulo}>
-                            <button className={style.back}><img src={back} alt="" /></button>
-                            <h2 className={style.lorem2}>{nombre}</h2>
+                            <button className={style.back}><img style={{ filter: color }} src={back} alt="" /></button>
+                            <h2 style={{ color: color }} className={style.lorem2}>{nombre}</h2>
                         </div>
                     </Link>
 
@@ -35,7 +35,7 @@ const Profile = () => {
                     </div>
 
 
-                    <div className={style.cuadro}><h2 className={style.username} >USERNAME</h2></div>
+                    <div style={{ background: color }} className={style.cuadro}><h2 className={style.username} >{nombre}</h2></div>
 
 
 
@@ -43,7 +43,7 @@ const Profile = () => {
                         <button className={style.botonp}> POSTS</button>
                         <button className={style.botonp2}> FAVORITES</button>
                     </div>
-                </div>
+                </div    >
             </div>
             <div className={style.line}></div>
         </div>

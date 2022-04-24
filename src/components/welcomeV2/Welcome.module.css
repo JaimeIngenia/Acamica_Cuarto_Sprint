@@ -18,7 +18,9 @@
   background-color: #2e132c;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  /* border: solid 3px red; */
+  height: 570px;
 }
 .userProfile {
   display: flex;
@@ -42,8 +44,11 @@
   padding: 10px;
 }
 .devs {
-  width: 500px;
-  height: 500px;
+  width: 600px;
+  height: 569px;
+  /* border: solid red 3px; */
+  margin: 0;
+  padding: 0;
 }
 .bloqueTexto {
   display: flex;
@@ -58,6 +63,7 @@
   display: flex;
   align-items: center;
   color: #ffffff;
+  font-size: 50px;
 }
 .lorem2 {
   font-family: Silkscreen;
@@ -65,12 +71,13 @@
   font-weight: bold;
   display: flex;
   align-items: center;
-  color: #ffffff;
+  /* color: #ffffff; */
   margin-top: -5px;
+  font-size: 50px;
 }
 .titulo {
   width: 433px;
-  height: 50px;
+  /* height: 50px; */
   /* border: solid red 3px; */
   padding-bottom: -20px;
 }
@@ -129,6 +136,9 @@
   font-size: 24px;
   line-height: 31px;
 }
+.input::placeholder {
+  color: #914d8b;
+}
 
 .bloques {
   display: flex;
@@ -178,4 +188,15 @@
   font-weight: bold;
   font-size: 24px;
   line-height: 24px;
+}
+.textoFinal {
+  font-family: Fira Code;
+  font-style: Retina;
+  font-size: 18px;
+  line-height: 24px;
+  line-height: 100%;
+  color: #60265b;
+}
+.textoFinal strong {
+  color: #f50d5a;
 }

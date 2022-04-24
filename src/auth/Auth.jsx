@@ -7,12 +7,16 @@ import Welcome from "../components/welcome/Welcome";
 import { Link } from "react-router-dom";
 import Welcomev2 from "../components/welcomeV2/WelcomeV2";
 import { useNavigate } from "react-router-dom";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
+import { app } from "../firebase";
+
+
 
 // import { Link } from 'react-browser-router';
 
 const Auth = ({ userLog, setUserLog }) => {
   // const [userLog, setUserLog] = useState(null);
-
+  const db = getFirestore(app);
   useEffect(() => {
     const unsuscribeAuth = auth.onAuthStateChanged((user) => {
       setUserLog(user);
@@ -24,6 +28,21 @@ const Auth = ({ userLog, setUserLog }) => {
   }, []);
   let navigate = useNavigate();
 
+  async function validateUsers(valores) {
+    const userRef = doc(db, "users", valores.uid);
+    const dataFirebase = await getDoc(userRef);
+
+    if (dataFirebase.exists()) {
+      setUserLog(valores);
+      navigate("/feed");
+
+    } else {
+      setUserLog(valores);
+      addUsers(valores);
+      navigate("/welcome");
+    }
+
+  }
   async function loginConGoogleV2() {
     try {
       await loginConGoogle().then((userData) => {
@@ -32,9 +51,7 @@ const Auth = ({ userLog, setUserLog }) => {
           Photo: userData.user.photoURL,
           uid: userData.user.uid
         }
-        setUserLog(valores);
-        addUsers(valores);
-        navigate("/welcome");
+        validateUsers(valores);
       });
     } catch (error) {
       console.log(error);

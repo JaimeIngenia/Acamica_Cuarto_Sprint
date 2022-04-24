@@ -4,9 +4,10 @@ import devs from "../../images/devs.svg"
 import { Link } from 'react-router-dom';
 import { useContext } from 'react/cjs/react.development';
 import { Appcontext } from '../context/AppContext';
+import { actualizarUsers } from '../../getData';
 
-const Welcomev2 = ({ userProfile, userLog, logout }) => {
-    const { color, setColor, nombre, setNombre } = useContext(Appcontext);
+const Welcomev2 = ({ userProfile, logout }) => {
+    const { color, setColor, nombre, setNombre, userLog } = useContext(Appcontext);
     // const [nombre, setNombre] = useState("")
     const manejarNombre = (e) => {
         setNombre(e.target.value)
@@ -19,7 +20,7 @@ const Welcomev2 = ({ userProfile, userLog, logout }) => {
                 <div className={styles.bloqueTexto}>
                     <div className={styles.titulo}>
                         <h2 className={styles.lorem} >WELCOME </h2>
-                        <h2 className={styles.lorem, styles.lorem2} >NAME</h2>
+                        <h2 style={{ color: color }} className={` ${styles.lorem} ${styles.lorem2}`} >NAME!</h2>
                     </div>
                     <input className={styles.input}
                         type="text"
@@ -28,6 +29,7 @@ const Welcomev2 = ({ userProfile, userLog, logout }) => {
                     />
 
                     <div className={styles.parrafo}>
+                        <br />
                         <p className={styles.fira}>Select your favorite color</p>
                     </div>
 
@@ -41,8 +43,17 @@ const Welcomev2 = ({ userProfile, userLog, logout }) => {
                     </div>
                     <Link to="/feed">
                         {/* <Link to="/feed"> */}
-                        <button className={styles.continue}>CONTINUE</button>
+                        <button className={styles.continue} onClick={() => {
+                            actualizarUsers(userLog.uid,
+                                {
+                                    color: color,
+                                    username: nombre
+                                }
+                            );
+                        }} >CONTINUE</button>
                     </Link>
+                    <br /><br />
+                    <p className={styles.textoFinal}>© 2020 Devs_United - <strong> BETA</strong> </p>
                 </div>
             </div>
         </div>

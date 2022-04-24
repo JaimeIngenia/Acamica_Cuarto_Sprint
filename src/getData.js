@@ -6,7 +6,9 @@ import {
   deleteDoc,
   updateDoc,
   setDoc,
+  getDoc,
 } from "firebase/firestore";
+
 import { app } from "./firebase";
 // Follow this pattern to import other Firebase services
 // import { } from 'firebase/<service>';
@@ -32,6 +34,19 @@ export async function getUsers() {
   });
   return usersList;
 }
+
+// --------------TAREA MIGUE --------------
+
+// const docRef = doc(db, "users", "uid");
+// const docSnap = await getDoc(docRef);
+// if (docSnap.exists()) {
+//   console.log("Document data:", docSnap.data());
+// } else {
+//   // doc.data() will be undefined in this case
+//   console.log("No such document!");
+// }
+
+// Validar si el usuario ya existe
 
 // --------------AGREGAR USUARIOS--------------
 export function addUsers(user) {
