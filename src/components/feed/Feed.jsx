@@ -1,24 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-lone-blocks */
 import style from "./Feed.module.css"
 import React, { useState, useContext, useEffect } from 'react';
 import logoMas from "../../images/logoMas.svg";
 import image2 from "../../images/image2.svg";
-
-import { addUsers } from "../../getData";
 import Muro from "../muro/Muro";
 import { Appcontext } from "../context/AppContext";
 import { Link } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore";
+import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../../getData"
 
 
-
-const INITIAL_FORM_DATA = {
-    Photo: "",
-    color: "",
-    uid: "",
-    username: ""
-};
 const Feed = () => {
 
     {
@@ -26,26 +18,35 @@ const Feed = () => {
     }
 
     const { color, userLog, nombre, setColor, setNombre } = useContext(Appcontext)
-    const [dataTweet, setdataTweet] = useState(
+    const [contenido, setContenido] = useState("")
+    const [fecha, setFecha] = useState("24-abril")
+
+    const reference = doc(collection(db, "tweets"));
+
+
+    const [tweetObjeto, setTweetObjeto] = useState(
         {
             Photo: userLog.Photo,
             color: color,
             uid: userLog.uid,
             username: nombre,
 
-            contenido: "",
-            fecha: "24-abr",
+            contenido: contenido,
+            fecha: fecha,
             likes: [],
-            idTweet: ""
+            // idTweet: doc(collection(db, "tweets")).id
+            idTweet: reference.id
+
         }
-    );
+    )
+
     useEffect(() => {
 
         async function traerColorNombre() {
             const refColorNombre = doc(db, "users", userLog.uid);
             const datosColorNombre = await getDoc(refColorNombre);
-            setdataTweet({
-                ...dataTweet, username: datosColorNombre.data().username,
+            setTweetObjeto({
+                ...tweetObjeto, username: datosColorNombre.data().username,
                 color: datosColorNombre.data().color
             })
         }
@@ -55,18 +56,14 @@ const Feed = () => {
 
     {/* ------------------EVENTOS----------------- */ }
     const cambiarContenidoTweet = (e) => {
-
-        setdataTweet((prev) => {
-            return {
-                ...prev,
-                contenido: e.target.value,
-            };
-        });
+        setContenido(e.target.value)
     };
 
-    const manejarSubmit = (e) => {
+    const manejarSubmit = async (e) => {
         e.preventDefault();
-        console.log(dataTweet);
+        await setDoc(reference, tweetObjeto);
+        console.log(tweetObjeto);
+
     };
     {/* ------------------EVENTOS----------------- */ }
 
@@ -102,7 +99,7 @@ const Feed = () => {
                             rows="4"
                             cols="30"
                             name="Nombre"
-                            value={dataTweet.contenido}
+                            value={contenido}
                             onChange={cambiarContenidoTweet}
                             type="text"
                             placeholder="What’s happening?..."
