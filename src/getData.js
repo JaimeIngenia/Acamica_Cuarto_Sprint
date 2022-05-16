@@ -18,6 +18,7 @@ import {
   GoogleAuthProvider,
   signOut,
 } from "firebase/auth";
+import { async } from "@firebase/util";
 
 export const db = getFirestore(app);
 
@@ -83,6 +84,22 @@ export async function actualizarUsers(id, newDataActualizada) {
     throw new Error("Error actualizando");
   }
 }
+// --------------LIKES--------------
+export const darLike = async (id, uid, likes) => {
+  const reference = doc(db, "tweets", id);
+  const isMyFavorite = likes.some((like) => like === uid);
+  if (isMyFavorite) {
+    const [uid, ...rest] = likes;
+    await updateDoc(reference, {
+      likes: [...rest],
+    });
+  } else {
+    await updateDoc(reference, {
+      likes: [...likes, uid],
+    });
+  }
+};
+
 // --------------SINGIN--------------
 // eslint-disable-next-line react-hooks/rules-of-hooks
 

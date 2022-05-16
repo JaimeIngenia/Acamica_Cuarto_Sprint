@@ -27,18 +27,12 @@ const Profile = () => {
                     </button>
                 </div>
                 <div className={style.profile}>
-
                     <div style={{
                         background: color
                     }} className={style.elipse}>
                         <img className={style.imgp} src={imgP} alt="" />
                     </div>
-
-
                     <div style={{ background: color }} className={style.cuadro}><h2 className={style.username} >{nombre}</h2></div>
-
-
-
                     <div>
                         <button className={style.botonp}> POSTS</button>
                         <button className={style.botonp2}> FAVORITES</button>

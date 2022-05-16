@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import style from "./Tweet.module.css"
 import corazon from "../../images/corazon.svg";
 import profileDefault from "../../images/profileDefault.svg";
-import { deleteUsers, actualizarUsers, deleteTweets } from "../../getData"
+import { deleteUsers, actualizarUsers, deleteTweets, darLike } from "../../getData"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { Appcontext } from '../context/AppContext';
@@ -15,11 +15,7 @@ const Tweet = ({ idTweet, uid, fecha, Photo, color, contenido, likes, username }
         deleteTweets(idTweet);
     };
 
-    const likeUser = (id, likes = 0) => {
-        actualizarUsers(id, {
-            likes: likes + 1,
-        });
-    };
+
 
     return (
         <div className={style.orden2}>
@@ -45,9 +41,9 @@ const Tweet = ({ idTweet, uid, fecha, Photo, color, contenido, likes, username }
                         </div>
                     </div>
                     <div className={style.nombre}>{contenido}</div>
-                    <button className={style.btnCora} onClick={() => likeUser(idTweet, likes)}>
+                    <button className={style.btnCora} onClick={() => darLike(idTweet, uid, likes)}>
                         <img src={corazon} height="13px" alt="Corazon"></img>
-                        <span  >{likes ? likes : 0}</span>
+                        <span  >{likes ? likes.length : 0}</span>
                     </button>
 
                 </div>
