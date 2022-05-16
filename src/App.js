@@ -45,7 +45,6 @@ function App() {
   useEffect(() => {
     getUsers()
       .then((data) => {
-        console.log(data);
         setUsersData(data);
       })
       .catch((error) => console.log("error"));

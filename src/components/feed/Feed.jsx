@@ -21,7 +21,7 @@ const Feed = () => {
     const [contenido, setContenido] = useState("")
     const [fecha, setFecha] = useState("24-abril")
 
-    const reference = doc(collection(db, "tweets"));
+
 
 
     const [tweetObjeto, setTweetObjeto] = useState(
@@ -31,11 +31,10 @@ const Feed = () => {
             uid: userLog.uid,
             username: nombre,
 
-            contenido: contenido,
+            contenido: "",
             fecha: fecha,
             likes: [],
-            // idTweet: doc(collection(db, "tweets")).id
-            idTweet: reference.id
+
 
         }
     )
@@ -57,11 +56,13 @@ const Feed = () => {
     {/* ------------------EVENTOS----------------- */ }
     const cambiarContenidoTweet = (e) => {
         setContenido(e.target.value)
+        console.log(e.target.value);
     };
 
     const manejarSubmit = async (e) => {
+        const reference = doc(collection(db, "tweets"));
         e.preventDefault();
-        await setDoc(reference, tweetObjeto);
+        await setDoc(reference, { ...tweetObjeto, contenido, idTweet: reference.id });
         console.log(tweetObjeto);
 
     };

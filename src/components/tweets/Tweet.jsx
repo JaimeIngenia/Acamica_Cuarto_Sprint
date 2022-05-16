@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import style from "./Tweet.module.css"
 import corazon from "../../images/corazon.svg";
 import profileDefault from "../../images/profileDefault.svg";
-import { deleteUsers, actualizarUsers } from "../../getData"
+import { deleteUsers, actualizarUsers, deleteTweets } from "../../getData"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { Appcontext } from '../context/AppContext';
@@ -10,14 +10,9 @@ import { Appcontext } from '../context/AppContext';
 const Tweet = ({ idTweet, uid, fecha, Photo, color, contenido, likes, username }) => {
     const { setUsersData, usersData, userLog } = useContext(Appcontext);
 
-    const manejarDelete = (e) => {
-        console.log(e.target.id);
-        deleteUsers(e.target.id).then((id) => {
-            const newUsers = usersData.filter((user) => {
-                return user.id !== id;
-            });
-            setUsersData(newUsers);
-        });
+    const manejarDelete = () => {
+        console.log("eliminando");
+        deleteTweets(idTweet);
     };
 
     const likeUser = (id, likes = 0) => {
@@ -49,7 +44,7 @@ const Tweet = ({ idTweet, uid, fecha, Photo, color, contenido, likes, username }
                             ) : null}
                         </div>
                     </div>
-                    <div className={style.nombre}>{username}</div>
+                    <div className={style.nombre}>{contenido}</div>
                     <button className={style.btnCora} onClick={() => likeUser(idTweet, likes)}>
                         <img src={corazon} height="13px" alt="Corazon"></img>
                         <span  >{likes ? likes : 0}</span>

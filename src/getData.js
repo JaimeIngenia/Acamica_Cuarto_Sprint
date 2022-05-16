@@ -59,9 +59,9 @@ export function addUsers(user) {
   }
 }
 // --------------ELIMINAR USUARIOS--------------
-export async function deleteUsers(id) {
+export async function deleteTweets(id) {
   try {
-    await deleteDoc(doc(db, "users", id));
+    await deleteDoc(doc(db, "tweets", id));
     return id;
   } catch (e) {
     console.log("Enrror al borrar el item", e);
