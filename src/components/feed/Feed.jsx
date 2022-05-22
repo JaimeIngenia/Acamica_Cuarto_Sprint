@@ -10,19 +10,14 @@ import { Link } from "react-router-dom";
 import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../../getData"
 
-
 const Feed = () => {
 
     {
         /* ------------------HOOCKS  ------------------ */
     }
-
     const { color, userLog, nombre, setColor, setNombre } = useContext(Appcontext)
     const [contenido, setContenido] = useState("")
     const [fecha, setFecha] = useState("24-abril")
-
-
-
 
     const [tweetObjeto, setTweetObjeto] = useState(
         {
@@ -34,13 +29,10 @@ const Feed = () => {
             contenido: "",
             fecha: fecha,
             likes: [],
-
-
         }
     )
 
     useEffect(() => {
-
         async function traerColorNombre() {
             const refColorNombre = doc(db, "users", userLog.uid);
             const datosColorNombre = await getDoc(refColorNombre);
@@ -50,7 +42,6 @@ const Feed = () => {
             })
         }
         traerColorNombre();
-
     }, []);
 
     {/* ------------------EVENTOS----------------- */ }

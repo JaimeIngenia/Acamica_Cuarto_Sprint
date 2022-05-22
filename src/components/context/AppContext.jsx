@@ -9,6 +9,7 @@ export const AppProvider = ({ children }) => {
     const [data, setData] = useState(usersData);
     const [color, setColor] = useState("");
     const [nombre, setNombre] = useState("")
+    const [tweets, setTweets] = useState([])
     const valoresAcompartir = {
         usersData,
         setUsersData,
@@ -19,7 +20,9 @@ export const AppProvider = ({ children }) => {
         color,
         setColor,
         nombre,
-        setNombre
+        setNombre,
+        tweets,
+        setTweets
     }
     return (
         <Appcontext.Provider value={valoresAcompartir}>

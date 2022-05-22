@@ -12,9 +12,7 @@ import { collection, doc, onSnapshot } from "firebase/firestore";
 
 
 const Muro = () => {
-    const { setUsersData, usersData, userLog } = useContext(Appcontext);
-
-    const [tweets, setTweets] = useState([]);
+    const { setUsersData, usersData, userLog, tweets, setTweets } = useContext(Appcontext);
 
     {       /* ------------------EVENTOS----------------- */ }
     const tweetPrueba = {
