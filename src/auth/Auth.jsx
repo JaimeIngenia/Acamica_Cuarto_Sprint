@@ -1,16 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import { addUsers, auth, loginConGoogle } from "../getData";
 import styles from "./Auth.module.css";
 import devs from "../images/devs.svg";
 import google from "../images/buscar.png";
-import Welcome from "../components/welcome/Welcome";
-import { Link } from "react-router-dom";
-import Welcomev2 from "../components/welcomeV2/WelcomeV2";
 import { useNavigate } from "react-router-dom";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { app } from "../firebase";
-
-
 
 // import { Link } from 'react-browser-router';
 
@@ -35,13 +31,11 @@ const Auth = ({ userLog, setUserLog }) => {
     if (dataFirebase.exists()) {
       setUserLog(valores);
       navigate("/feed");
-
     } else {
       setUserLog(valores);
       addUsers(valores);
       navigate("/welcome");
     }
-
   }
   async function loginConGoogleV2() {
     try {
@@ -49,8 +43,8 @@ const Auth = ({ userLog, setUserLog }) => {
         const valores = {
           Nombre: userData.user.displayName,
           Photo: userData.user.photoURL,
-          uid: userData.user.uid
-        }
+          uid: userData.user.uid,
+        };
         validateUsers(valores);
       });
     } catch (error) {
@@ -58,7 +52,7 @@ const Auth = ({ userLog, setUserLog }) => {
     }
   }
   return (
-    <div >
+    <div>
       <div className={styles.auth}>
         <img src={devs} alt="" className={styles.devs} />
         <div className={styles.bloqueTexto}>

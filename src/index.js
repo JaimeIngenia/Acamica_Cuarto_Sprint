@@ -6,7 +6,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Welcomev2 from "./components/welcomeV2/WelcomeV2";
 import Profile from "./components/profile/Profile";
 import Feed from "./components/feed/Feed";
-import { Appcontext } from "./components/context/AppContext";
 import { AppProvider } from "./components/context/AppContext";
 import FriendProfile from "./components/friendProfile/FriendProfile";
 

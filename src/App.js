@@ -1,12 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-lone-blocks */
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { getUsers, db } from "./getData";
 import { collection, onSnapshot } from "firebase/firestore";
 import Auth from "./auth/Auth";
 import style from "./App.module.css";
-import Feed from "./components/feed/Feed";
 import { Appcontext } from "./components/context/AppContext";
-import { Route } from "react-router-dom";
 
 function App() {
   {

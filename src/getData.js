@@ -6,7 +6,6 @@ import {
   deleteDoc,
   updateDoc,
   setDoc,
-  getDoc,
 } from "firebase/firestore";
 
 import { app } from "./firebase";
@@ -18,7 +17,6 @@ import {
   GoogleAuthProvider,
   signOut,
 } from "firebase/auth";
-import { async } from "@firebase/util";
 
 export const db = getFirestore(app);
 
@@ -89,7 +87,7 @@ export const darLike = async (id, uid, likes) => {
   const reference = doc(db, "tweets", id);
   const isMyFavorite = likes.some((like) => like === uid);
   if (isMyFavorite) {
-    const [uid, ...rest] = likes;
+    const [...rest] = likes;
     await updateDoc(reference, {
       likes: [...rest],
     });
