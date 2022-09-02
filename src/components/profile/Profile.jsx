@@ -15,7 +15,7 @@ const Profile = () => {
   const favorites = tweets.filter((tweet) => tweet.likes.includes(userLog.uid));
   const [option, setOption] = useState(false);
   return (
-    <div>
+    <div className={style.fondoAgosto}>
       <div className={style.head2}>
         <div className={style.head}>
           <Link to="/feed">
