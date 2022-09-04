@@ -16,7 +16,7 @@ const Feed = () => {
   }
   const { color, userLog, nombre } = useContext(Appcontext);
   const [contenido, setContenido] = useState("");
-  const [fecha] = useState("24-abril");
+  const [fecha] = useState(()=> new Date().toDateString().slice(4, 10) );
 
   const [tweetObjeto, setTweetObjeto] = useState({
     Photo: userLog.Photo,
@@ -29,6 +29,10 @@ const Feed = () => {
     likes: [],
   });
 
+  //new Date()
+  console.log(new Date().toDateString().slice(4, 10))
+  // .toDateString().slice(4, 10)
+  
   useEffect(() => {
     async function traerColorNombre() {
       const refColorNombre = doc(db, "users", userLog.uid);
